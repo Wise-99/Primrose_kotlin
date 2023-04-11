@@ -11,6 +11,10 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="MyItemFont" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/hipi</item>
+        <item name="android:textSize">30sp</item>
     </style>
 </resources>

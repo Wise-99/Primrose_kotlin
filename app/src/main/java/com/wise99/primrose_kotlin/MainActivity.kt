@@ -36,12 +36,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.home -> Toast.makeText(applicationContext, "홈", Toast.LENGTH_SHORT).show()
             R.id.name -> Toast.makeText(applicationContext, "이름 찾기", Toast.LENGTH_SHORT).show()
             R.id.mean -> Toast.makeText(applicationContext, "꽃말 찾기", Toast.LENGTH_SHORT).show()
+            R.id.map -> Toast.makeText(applicationContext, "꽃집 찾기", Toast.LENGTH_SHORT).show()
         }
 
         layoutDrawer.closeDrawers() // 네비게이션 뷰 닫기
         return false
     }
-    
+
     // back버튼 누를 시 수행하는 메소드
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
