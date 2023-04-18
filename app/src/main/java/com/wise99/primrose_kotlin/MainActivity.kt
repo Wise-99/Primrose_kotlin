@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.wise99.primrose_kotlin.fragment.MainFragment
+import com.wise99.primrose_kotlin.fragment.MapFragment
+import com.wise99.primrose_kotlin.fragment.MeanFragment
+import com.wise99.primrose_kotlin.fragment.NameFragment
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -31,12 +34,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean { // 네비게이션 메뉴 아이템 클릭 시 수행
+
+        val fragmentMain = MainFragment()
+        val fragmentMap = MapFragment()
+        val fragmentMean = MeanFragment()
+        val fragmentName = NameFragment()
+
         when(item.itemId)
         {
-            R.id.home -> Toast.makeText(applicationContext, "홈", Toast.LENGTH_SHORT).show()
-            R.id.name -> Toast.makeText(applicationContext, "이름 찾기", Toast.LENGTH_SHORT).show()
-            R.id.mean -> Toast.makeText(applicationContext, "꽃말 찾기", Toast.LENGTH_SHORT).show()
-            R.id.map -> Toast.makeText(applicationContext, "꽃집 찾기", Toast.LENGTH_SHORT).show()
+            R.id.home ->
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.host_fragment, fragmentMain)
+                    .commit()
+            R.id.name ->
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.host_fragment, fragmentName)
+                    .commit()
+            R.id.mean ->
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.host_fragment, fragmentMean)
+                    .commit()
+            R.id.map ->
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.host_fragment, fragmentMap)
+                    .commit()
         }
 
         layoutDrawer.closeDrawers() // 네비게이션 뷰 닫기

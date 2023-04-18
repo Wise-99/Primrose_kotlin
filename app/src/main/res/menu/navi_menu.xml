@@ -6,11 +6,11 @@
             android:icon="@drawable/baseline_home_24"/>
 
         <item android:id="@+id/name"
-            android:title="꽃 이름으로 검색하기"
+            android:title="꽃 이름 검색하기"
             android:icon="@drawable/baseline_search_24" />
 
         <item android:id="@+id/mean"
-            android:title="꽃말로 검색하기"
+            android:title="꽃말 검색하기"
             android:icon="@drawable/baseline_search_24"/>
 
         <item android:id="@+id/map"
