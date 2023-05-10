@@ -5,6 +5,10 @@
             android:title="홈"
             android:icon="@drawable/baseline_home_24"/>
 
+        <item android:id="@+id/all"
+            android:title="꽃 목록 보기"
+            android:icon="@drawable/baseline_map_24"/>
+
         <item android:id="@+id/name"
             android:title="꽃 이름 검색하기"
             android:icon="@drawable/baseline_search_24" />

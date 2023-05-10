@@ -8,10 +8,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-import com.wise99.primrose_kotlin.fragment.MainFragment
-import com.wise99.primrose_kotlin.fragment.MapFragment
-import com.wise99.primrose_kotlin.fragment.MeanFragment
-import com.wise99.primrose_kotlin.fragment.NameFragment
+import com.wise99.primrose_kotlin.fragment.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -39,6 +36,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val fragmentMap = MapFragment()
         val fragmentMean = MeanFragment()
         val fragmentName = NameFragment()
+        val fragmentAll = AllFragment()
 
         when(item.itemId)
         {
@@ -47,6 +45,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .beginTransaction()
                     .replace(R.id.host_fragment, fragmentMain)
                     .commit()
+
+            R.id.all ->
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.host_fragment, fragmentAll)
+                    .commit()
+
             R.id.name ->
                 supportFragmentManager
                     .beginTransaction()
