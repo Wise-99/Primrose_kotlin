@@ -19,6 +19,9 @@ class Repository {
         myRef.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
+                // 리스트 데이터 초기화
+                listData.clear()
+
                 if (snapshot.exists()){
                     for (userSnapshot in snapshot.children){
                         val getData = userSnapshot.getValue(Flower::class.java)
@@ -35,16 +38,18 @@ class Repository {
         return mutableData
     }
 
-    fun searchData() : LiveData<MutableList<Flower>> {
+    fun searchData(mean : String) : LiveData<MutableList<Flower>> {
 
         myRef.addValueEventListener(object : ValueEventListener {
-            val listData: MutableList<Flower> = mutableListOf<Flower>()
 
             override fun onDataChange(snapshot: DataSnapshot) {
+                listData.clear()
+
                 if (snapshot.exists()){
                     for (userSnapshot in snapshot.children){
                         val getData = userSnapshot.getValue(Flower::class.java)
-                        listData.add(getData!!)
+                        if (getData?.floriography?.contains(mean) == true)
+                            listData.add(getData!!)
 
                         mutableData.value = listData
                     }

@@ -39,17 +39,26 @@ class MeanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val etSearchMean = binding.MeanSearchET
+        val btnSearchMean = binding.searchMeanBtn
+
         adapter = ListAdapter(mainContext)
 
         val recyclerViewMean : RecyclerView = binding.recyclerViewMean
         recyclerViewMean.layoutManager = LinearLayoutManager(mainContext)
         recyclerViewMean.adapter = adapter
-        observerData()
+
+        btnSearchMean.setOnClickListener {
+            // 검색창에 입력한 단어
+            val searchMean = etSearchMean.text.toString()
+            observerData(searchMean)
+        }
+
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun observerData() {
-        viewModel.fetchData().observe(viewLifecycleOwner, Observer {
+    fun observerData(mean:String) {
+        viewModel.searchData(mean).observe(viewLifecycleOwner, Observer {
             adapter.setListData(it)
             adapter.notifyDataSetChanged()
         })
