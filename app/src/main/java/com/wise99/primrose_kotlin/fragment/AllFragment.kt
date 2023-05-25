@@ -1,5 +1,6 @@
 package com.wise99.primrose_kotlin.fragment
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,15 +11,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.wise99.ListAdapter
+import com.wise99.primrose_kotlin.ListAdapter
 import com.wise99.primrose_kotlin.ListViewModel
-import com.wise99.primrose_kotlin.MainActivity
 import com.wise99.primrose_kotlin.databinding.FragmentAllBinding
 
 class AllFragment : Fragment() {
     lateinit var binding: FragmentAllBinding
     private lateinit var adapter: ListAdapter
-    private val viewModel by lazy { ViewModelProvider(this).get(ListViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this)[ListViewModel::class.java] }
 
     // 1. Context를 할당할 변수를 프로퍼티로 선언(어디서든 사용할 수 있게)
     lateinit var mainContext: Context
@@ -40,15 +40,15 @@ class AllFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         adapter = ListAdapter(mainContext)
 
-        val recyclerView : RecyclerView = binding.recyclerView
+        val recyclerView : RecyclerView = binding.recyclerViewAll
         recyclerView.layoutManager = LinearLayoutManager(mainContext)
         recyclerView.adapter = adapter
         observerData()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun observerData() {
         viewModel.fetchData().observe(viewLifecycleOwner, Observer {
             adapter.setListData(it)

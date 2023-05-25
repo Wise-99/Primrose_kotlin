@@ -10,10 +10,32 @@ import com.google.firebase.ktx.Firebase
 
 // datasource를 캡슐화 하는 것
 class Repository {
+    val mutableData = MutableLiveData<MutableList<Flower>>()
+    val database = Firebase.database
+    val myRef = database.getReference("Flower")
+    val listData: MutableList<Flower> = mutableListOf<Flower>()
+
     fun getData(): LiveData<MutableList<Flower>> {
-        val mutableData = MutableLiveData<MutableList<Flower>>()
-        val database = Firebase.database
-        val myRef = database.getReference("Flower")
+        myRef.addValueEventListener(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()){
+                    for (userSnapshot in snapshot.children){
+                        val getData = userSnapshot.getValue(Flower::class.java)
+                        listData.add(getData!!)
+
+                        mutableData.value = listData
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+        return mutableData
+    }
+
+    fun searchData() : LiveData<MutableList<Flower>> {
 
         myRef.addValueEventListener(object : ValueEventListener {
             val listData: MutableList<Flower> = mutableListOf<Flower>()
