@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -19,8 +20,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
 
         val naviBtn = findViewById<ImageView>(R.id.btn_navi)
+        layoutDrawer = findViewById<DrawerLayout>(R.id.layout_drawer)
+
         naviBtn.setOnClickListener {
-            layoutDrawer = findViewById<DrawerLayout>(R.id.layout_drawer)
             layoutDrawer.openDrawer(GravityCompat.START) // START : left , END : right
         }
 
@@ -34,8 +36,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val fragmentMain = MainFragment()
         val fragmentMap = MapFragment()
-        val fragmentMean = MeanFragment()
-        val fragmentName = NameFragment()
+        val fragmentSearch = SearchFragment()
         val fragmentAll = AllFragment()
 
         when(item.itemId)
@@ -52,15 +53,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .replace(R.id.host_fragment, fragmentAll)
                     .commit()
 
-            R.id.name ->
+            R.id.search ->
                 supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.host_fragment, fragmentName)
-                    .commit()
-            R.id.mean ->
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.host_fragment, fragmentMean)
+                    .replace(R.id.host_fragment, fragmentSearch)
                     .commit()
             R.id.map ->
                 supportFragmentManager
@@ -73,15 +69,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return false
     }
 
+    private var backPressedTime = 0L
+
     // back버튼 누를 시 수행하는 메소드
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
+
+            // 좌측 layoutDrawer가 열려있을 때
             if(layoutDrawer.isDrawerOpen(GravityCompat.START)){
                 layoutDrawer.closeDrawers()
             }
-            else {
+
+            // 뒤로가기 두번 눌렀을 때
+            else if(System.currentTimeMillis() - backPressedTime <= 2000) {
                 finish()
+            }
+
+            // 뒤로가기 한번 눌렀을 때
+            else {
+                backPressedTime = System.currentTimeMillis()
+                Toast.makeText(this@MainActivity, "한 번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT).show()
             }
         }
     }
 }
+

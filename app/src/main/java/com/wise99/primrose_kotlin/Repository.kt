@@ -38,7 +38,7 @@ class Repository {
         return mutableData
     }
 
-    fun searchData(mean : String) : LiveData<MutableList<Flower>> {
+    fun searchData(words : String) : LiveData<MutableList<Flower>> {
 
         myRef.addValueEventListener(object : ValueEventListener {
 
@@ -48,7 +48,7 @@ class Repository {
                 if (snapshot.exists()){
                     for (userSnapshot in snapshot.children){
                         val getData = userSnapshot.getValue(Flower::class.java)
-                        if (getData?.floriography?.contains(mean) == true)
+                        if (getData?.floriography?.contains(words) == true || getData?.fname?.contains(words) == true)
                             listData.add(getData!!)
 
                         mutableData.value = listData

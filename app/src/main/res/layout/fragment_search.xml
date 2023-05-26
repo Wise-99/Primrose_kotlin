@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.MeanFragment">
+    tools:context=".fragment.SearchFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:fontFamily="@font/hipi"
-            android:hint="검색할 꽃말을 입력해주세요.(사랑, 우정 등등)"
+            android:hint="검색할 단어를 입력해주세요.(사랑, 장미 등등)"
             android:text="" />
 
     </LinearLayout>

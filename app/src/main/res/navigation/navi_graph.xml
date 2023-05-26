@@ -6,20 +6,10 @@
     app:startDestination="@id/mainFragment">
 
     <fragment
-        android:id="@+id/nameFragment"
-        android:name="com.wise99.primrose_kotlin.fragment.NameFragment"
-        android:label="fragment_name"
-        tools:layout="@layout/fragment_name" />
-    <fragment
         android:id="@+id/mapFragment"
         android:name="com.wise99.primrose_kotlin.fragment.MapFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" />
-    <fragment
-        android:id="@+id/meanFragment"
-        android:name="com.wise99.primrose_kotlin.fragment.MeanFragment"
-        android:label="fragment_mean"
-        tools:layout="@layout/fragment_mean" />
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.wise99.primrose_kotlin.fragment.MainFragment"
@@ -29,18 +19,20 @@
             android:id="@+id/action_mainFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_nameFragment"
-            app:destination="@id/nameFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_meanFragment"
-            app:destination="@id/meanFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_allFragment"
             app:destination="@id/allFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/allFragment"
         android:name="com.wise99.primrose_kotlin.fragment.AllFragment"
         android:label="fragment_all"
         tools:layout="@layout/fragment_all" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.wise99.primrose_kotlin.fragment.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
 </navigation>

@@ -9,12 +9,8 @@
             android:title="꽃 목록 보기"
             android:icon="@drawable/baseline_map_24"/>
 
-        <item android:id="@+id/name"
-            android:title="꽃 이름 검색하기"
-            android:icon="@drawable/baseline_search_24" />
-
-        <item android:id="@+id/mean"
-            android:title="꽃말 검색하기"
+        <item android:id="@+id/search"
+            android:title="검색하기"
             android:icon="@drawable/baseline_search_24"/>
 
         <item android:id="@+id/map"

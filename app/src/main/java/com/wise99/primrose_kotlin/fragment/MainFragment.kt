@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.wise99.primrose_kotlin.MainActivity
 import com.wise99.primrose_kotlin.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
@@ -23,7 +24,5 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
     }
 }

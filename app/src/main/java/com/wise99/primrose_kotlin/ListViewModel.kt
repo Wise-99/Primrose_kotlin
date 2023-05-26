@@ -16,8 +16,8 @@ class ListViewModel : ViewModel() {
         return mutableData
     }
 
-    fun searchData(mean: String): LiveData<MutableList<Flower>> {
-        repo.searchData(mean).observeForever{
+    fun searchData(words: String): LiveData<MutableList<Flower>> {
+        repo.searchData(words).observeForever{
             mutableData.value = it
         }
         return mutableData
