@@ -1,11 +1,13 @@
 package com.wise99.primrose_kotlin
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
@@ -35,7 +37,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean { // 네비게이션 메뉴 아이템 클릭 시 수행
 
         val fragmentMain = MainFragment()
-        val fragmentMap = MapFragment()
         val fragmentSearch = SearchFragment()
         val fragmentAll = AllFragment()
 
@@ -58,11 +59,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .beginTransaction()
                     .replace(R.id.host_fragment, fragmentSearch)
                     .commit()
-            R.id.map ->
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.host_fragment, fragmentMap)
-                    .commit()
+            R.id.map -> {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/%EA%B7%BC%EC%B2%98%20%EA%BD%83%EC%A7%91"))
+                startActivity(intent)
+            }
         }
 
         layoutDrawer.closeDrawers() // 네비게이션 뷰 닫기
