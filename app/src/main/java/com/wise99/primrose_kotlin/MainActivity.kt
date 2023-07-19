@@ -11,15 +11,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.wise99.primrose_kotlin.databinding.ActivityMainBinding
 import com.wise99.primrose_kotlin.fragment.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    lateinit var activityMainBinding: ActivityMainBinding
     lateinit var layoutDrawer: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(activityMainBinding.root)
 
         val naviBtn = findViewById<ImageView>(R.id.btn_navi)
         layoutDrawer = findViewById<DrawerLayout>(R.id.layout_drawer)
@@ -39,6 +43,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val fragmentMain = MainFragment()
         val fragmentSearch = SearchFragment()
         val fragmentAll = AllFragment()
+        val fragmentMap = MapFragment()
 
         when(item.itemId)
         {
@@ -60,8 +65,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .replace(R.id.host_fragment, fragmentSearch)
                     .commit()
             R.id.map -> {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://map.naver.com/v5/search/%EA%B7%BC%EC%B2%98%20%EA%BD%83%EC%A7%91"))
-                startActivity(intent)
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.host_fragment, fragmentMap)
+                    .commit()
             }
         }
 
